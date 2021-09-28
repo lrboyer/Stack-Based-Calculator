@@ -8,7 +8,7 @@ int main() {
     cout << "---   This is a basic 5 operation calculator   ---" << endl;
     cout << "---   I can do addition, subtraction, multiplication, division, and modulo   ---" << endl;
     cout << "---   You can also use parenthesis   ---" << endl;
-    cout << "---   Example of correct syntax for infix: 2 + 3 * 4 + ( 5 - 6 + 7 ) % 8   ---" << endl << 
+    cout << "---   Example of correct syntax for infix: 2 + 3 * 4 + ( 5 - 6 + 7 ) % 8   ---" << endl;
     cout << "---   Example of correct syntax for postfix: 2 3 4 * + 5 6 - 7 + 8 * +  ---" << endl << endl << endl;
 
 
