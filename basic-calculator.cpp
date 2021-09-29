@@ -3,34 +3,40 @@
 using namespace std;
 
 int main() {
-    int input;
+    int check;
+    string expression;
 
-    cout << "---   This is a basic 5 operation calculator   ---" << endl;
-    cout << "---   I can do addition, subtraction, multiplication, division, and modulo   ---" << endl;
-    cout << "---   You can also use parenthesis   ---" << endl;
-    cout << "---   Example of correct syntax for infix: 2 + 3 * 4 + ( 5 - 6 + 7 ) % 8   ---" << endl;
-    cout << "---   Example of correct syntax for postfix: 2 3 4 * + 5 6 - 7 + 8 * +  ---" << endl << endl << endl;
+    cout << "---   This is a basic 5 operation calculator" << endl;
+    cout << "---   I can do addition, subtraction, multiplication, division, and modulo" << endl;
+    cout << "---   I only take in positive integers and have integer precision" << endl;
+    cout << "---   To input a negative number put in x is the number you want negative: ( ( 1 - 2 ) * x )" << endl << endl;
+
+    cout << "---   I can take inputs in infix or postfix form" << endl;
+    cout << "---   Example of correct syntax for infix: 2 + 3 * 4 + ( 5 - 6 + 7 ) % 8" << endl;
+    cout << "---   Example of correct syntax for postfix: 2 3 4 * + 5 6 - 7 + 8 * + " << endl << endl;
 
 
-    while (input != 3) {
-        input = menu();
+    while (expression != "q") {
+        cout << "---   Enter q to quit" << endl;
+        cout << "---   Enter an expression: ";
+        
+        getline(cin, expression);
+        
+        if (expression == "q") {
+            cout << endl << "---   Have a nice day!" << endl;
+            cout << "---   Made by Lucas Boyer" << endl;
 
-        switch(input) {
-            case 1: //calculates expression infix
-                calculateExpressionInfix();
-            break;
+        }
+        else {
+            check = checkInput(expression);
 
-            case 2: //calculates expression postfix way
-                calculateExpressionPostfix();
-            break;
-
-            case 3: //quits
-                cout << "---      Have a nice day!      ---" << endl;
-            break;
-
-            default: //incase they don't choose 1 or 2
-                cout << "---     Please enter a valid input     ---" << endl << endl;
-            break;
+            if (check == -1) {
+                cout << "---   Expression must have proper format!" << endl << endl;
+            }
+            else if (check == 1) 
+                calculateExpressionInfix(expression);
+            else //check == 2
+                calculateExpressionPostfix(expression);
         }
     }
 }

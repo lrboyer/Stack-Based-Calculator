@@ -18,7 +18,7 @@ bool isNum(string s) {
 //calculates the expression using the inputed nums and ops
 //returns a string containing the answer
 string calc(string op1, string op2, char symbol) {
-    int num = 0;
+    long long int num = 0;
 
     switch (symbol) {
         case '+' :

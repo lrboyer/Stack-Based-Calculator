@@ -7,45 +7,27 @@
 #pragma once
 using namespace std;
 
-int menu() {
-    int input;
+int checkInput(const string in) {
 
-    cout << "---   Press 1 to enter an expression infix notation   ---" << endl;
-    cout << "---   Press 2 to enter an expression postfix notation   ---" << endl;
-    cout << "---           Press 3 to exit          ---" << endl;
-    //may add more functions
+    if (in.size() < 3)
+            return -1;
     
-    cout << endl << "--> ";
-    cin >> input;
-    cout << endl;
+    for (long unsigned int i = 0; i < in.size(); i++) {
+        if (in[i] == ' ' &&  in[i+1] == ' ')
+            return -1; //not proper input
+    }
+    for (long unsigned int i = 0; i < in.size(); i++) {
+        if (isNum(in[i]) && in[i+1] == ' ' && isNum(in[i+2])) 
+            return 2; //2 means an postfix operation is needed
+    }
 
-    return input;
+    return 1; //1 means infix operation is needed
 }
 
-void calculateExpressionInfix() {
-    int result, postfixLength;
-    string expression, buffer;
-
-    cout << "---   Please enter an expression: " << endl << "-->   ";
-    cin.ignore();
-    getline(cin, expression);
-    cout << endl;
-
-    if (expression.size() < 3) {
-        cout << "---   Expression must have proper format!" << endl << endl;
-        return;
-    }
-
-    for (long unsigned int i = 0; i < expression.size(); i++) {
-        if ((expression[i] > 48 && expression[i] < 58) && expression[i+1] == ' ' && expression[i+2] == ' ') {
-            cout << "---   Expression must have proper format!" << endl << endl;
-            return;
-        }
-        else if (expression[i] == ' ' &&  expression[i+1] == ' ') {
-            cout << "---   Expression must have proper format!" << endl << endl;
-            return;
-        }
-    }
+void calculateExpressionInfix(const string expression) {
+    int postfixLength;
+    long long int result;
+    string buffer;
         
     string infix[expression.size()];
     string postfix[expression.size()];
@@ -68,34 +50,13 @@ void calculateExpressionInfix() {
     
     result = calculatePostfixExpression(postfix, postfixLength);
 
-    cout << "-->   " << result << "   ---" << endl << endl;
+    cout << "-->   " << result << endl << endl;
     
 }
 
-void calculateExpressionPostfix() {
+void calculateExpressionPostfix(const string expression) {
     int result;
-    string expression, buffer;
-
-    cout << "---   Please enter an expression: " << endl << "-->   ";
-    cin.ignore();
-    getline(cin, expression);
-    cout << endl;
-
-    if (expression.size() < 3) {
-        cout << "---   Expression must have proper format!" << endl << endl;
-        return;
-    }
-
-    for (long unsigned int i = 0; i < expression.size(); i++) {
-        if (expression[i] == ' ' &&  expression[i+1] == ' ') {
-            cout << "---   Expression must have proper format!" << endl << endl;
-            return;
-        }
-        else if ((expression[i] > 48 && expression[i] < 58) && expression[i+1] == ' ' && expression[i+2] == ' ') {
-            cout << "---   Expression must have proper format!" << endl << endl;
-            return;
-        }
-    }
+    string buffer;
         
     string postfix[expression.size()];
     int j = 0;
@@ -115,6 +76,6 @@ void calculateExpressionPostfix() {
     
     result = calculatePostfixExpression(postfix, j);
 
-    cout << "-->   " << result << "   ---" << endl << endl;
+    cout << "-->   " << result << endl << endl;
     
 }
